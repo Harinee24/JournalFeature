@@ -39,5 +39,16 @@ public class JournalController {
         journalService.deleteJournal(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Journal> updateJournal(@PathVariable String id, @RequestBody Journal updatedJournal) {
+        Optional<Journal> existingJournal = journalService.getJournalById(id);
+        if (existingJournal.isPresent()) {
+            updatedJournal.setId(id);
+            return ResponseEntity.ok(journalService.updateJournal(updatedJournal));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
 

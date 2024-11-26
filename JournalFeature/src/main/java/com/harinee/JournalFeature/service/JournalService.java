@@ -29,5 +29,9 @@ public class JournalService {
     public void deleteJournal(String id) {
         journalRepository.deleteById(id);
     }
-}
 
+    public Journal updateJournal(Journal updatedJournal) {
+        return journalRepository.save(updatedJournal); // Save the updated journal in the database
+    }
+
+}

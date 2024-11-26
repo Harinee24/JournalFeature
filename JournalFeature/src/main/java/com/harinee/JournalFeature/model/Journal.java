@@ -45,4 +45,3 @@ public class Journal {
         this.createdAt = createdAt;
     }
 }
-
