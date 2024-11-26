@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,9 @@ public class JournalController {
 
     @PostMapping
     public ResponseEntity<Journal> createJournal(@RequestBody Journal journal) {
+        if (journal.getCreatedAt() == null) {
+            journal.setCreatedAt(LocalDateTime.now());
+        }
         return ResponseEntity.ok(journalService.createJournal(journal));
     }
 
